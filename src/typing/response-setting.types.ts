@@ -1,3 +1,3 @@
 export const passthrough = {
-  'passthrough': true,
-};
+  passthrough: true,
+}

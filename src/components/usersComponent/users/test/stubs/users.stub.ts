@@ -1,5 +1,5 @@
-import { Users } from '../../models/users.model';
-import { ROLES } from '../../../../../constants/roles.constants';
+import { Users } from '../../models/users.model'
+import { ROLES } from '../../../../../constants/roles.constants'
 
 export const usersStub = (): Users => {
   return <Users>{
@@ -16,5 +16,5 @@ export const usersStub = (): Users => {
         name: ROLES.USER,
       },
     ],
-  };
-};
+  }
+}

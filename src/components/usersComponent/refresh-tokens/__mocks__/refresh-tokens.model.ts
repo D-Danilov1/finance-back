@@ -1,13 +1,13 @@
-import { refreshTokensStub } from '../test/stubs/refresh-tokens.stub';
+import { refreshTokensStub } from '../test/stubs/refresh-tokens.stub'
 
 export const RefreshTokensModel = {
   create: jest.fn().mockImplementation(() => {
-    return refreshTokensStub();
+    return refreshTokensStub()
   }),
   findOne: jest.fn().mockImplementation(() => {
-    return refreshTokensStub();
+    return refreshTokensStub()
   }),
   update: jest.fn().mockImplementation(() => {
-    return 1;
+    return 1
   }),
-};
+}

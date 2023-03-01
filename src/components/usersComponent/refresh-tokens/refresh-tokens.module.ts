@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { RefreshTokensService } from './refresh-tokens.service';
-import { SequelizeModule } from '@nestjs/sequelize';
-import { RefreshTokens } from './models/refresh-tokens.model';
+import { Module } from '@nestjs/common'
+import { RefreshTokensService } from './refresh-tokens.service'
+import { SequelizeModule } from '@nestjs/sequelize'
+import { RefreshTokens } from './models/refresh-tokens.model'
 
 @Module({
   providers: [RefreshTokensService],

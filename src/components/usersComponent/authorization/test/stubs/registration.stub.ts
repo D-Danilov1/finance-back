@@ -1,4 +1,4 @@
-import { CreateUsersDto } from '../../../users/dto/create-users.dto';
+import { CreateUsersDto } from '../../../users/dto/create-users.dto'
 
 export const registrationStub = (): CreateUsersDto => {
   return <CreateUsersDto>{
@@ -6,5 +6,5 @@ export const registrationStub = (): CreateUsersDto => {
     password: 'Qwerty12345!',
     name: 'Ivan',
     surname: 'Ivanov',
-  };
-};
+  }
+}

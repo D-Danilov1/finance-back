@@ -1,4 +1,4 @@
-import { JwtService } from '@nestjs/jwt';
+import { JwtService } from '@nestjs/jwt'
 
 export class JwtServiceGenerator {
   getJwtService(tokenLifeTime = '24h', secretKey = 'm2NmCPRY5PWP2282') {
@@ -7,6 +7,6 @@ export class JwtServiceGenerator {
       signOptions: {
         expiresIn: tokenLifeTime,
       },
-    });
+    })
   }
 }

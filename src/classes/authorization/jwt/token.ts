@@ -1,25 +1,25 @@
-import { Users } from '../../../components/usersComponent/users/models/users.model';
-import { JwtServiceGenerator } from './jwt-service-generator';
-import { ConfigService } from '@nestjs/config';
+import { Users } from '../../../components/usersComponent/users/models/users.model'
+import { JwtServiceGenerator } from './jwt-service-generator'
+import { ConfigService } from '@nestjs/config'
 
 export class Token {
-  private readonly accessTokenLifeTime: string;
-  private readonly accessTokenSecretKey: string;
+  private readonly accessTokenLifeTime: string
+  private readonly accessTokenSecretKey: string
 
-  private readonly refreshTokenLifeTime: string;
-  private readonly refreshTokenSecretKey: string;
+  private readonly refreshTokenLifeTime: string
+  private readonly refreshTokenSecretKey: string
 
-  private jwtServiceGenerator: JwtServiceGenerator;
+  private jwtServiceGenerator: JwtServiceGenerator
 
   constructor() {
     // TODO: вынести в конструктор
-    this.jwtServiceGenerator = new JwtServiceGenerator();
-    const config = new ConfigService();
+    this.jwtServiceGenerator = new JwtServiceGenerator()
+    const config = new ConfigService()
 
-    this.accessTokenLifeTime = config.get('ACCESS_TOKEN_LIFETIME');
-    this.accessTokenSecretKey = config.get('ACCESS_TOKEN_SECRET_KEY');
-    this.refreshTokenLifeTime = config.get('REFRESH_TOKEN_LIFETIME');
-    this.refreshTokenSecretKey = config.get('REFRESH_TOKEN_SECRET_KEY');
+    this.accessTokenLifeTime = config.get('ACCESS_TOKEN_LIFETIME')
+    this.accessTokenSecretKey = config.get('ACCESS_TOKEN_SECRET_KEY')
+    this.refreshTokenLifeTime = config.get('REFRESH_TOKEN_LIFETIME')
+    this.refreshTokenSecretKey = config.get('REFRESH_TOKEN_SECRET_KEY')
   }
 
   generateTokens(user: Users) {
@@ -31,16 +31,16 @@ export class Token {
       refreshToken: this.jwtServiceGenerator
         .getJwtService(this.refreshTokenLifeTime, this.refreshTokenSecretKey)
         .sign(this.getPayload(user)),
-    };
+    }
   }
 
   validateAccessToken(accessToken: string) {
     try {
       return this.jwtServiceGenerator
         .getJwtService(this.accessTokenLifeTime, this.accessTokenSecretKey)
-        .verify(accessToken);
+        .verify(accessToken)
     } catch (e) {
-      return null;
+      return null
     }
   }
 
@@ -48,23 +48,23 @@ export class Token {
     try {
       return this.jwtServiceGenerator
         .getJwtService(this.refreshTokenLifeTime, this.refreshTokenSecretKey)
-        .verify(accessToken);
+        .verify(accessToken)
     } catch (e) {
-      return null;
+      return null
     }
   }
 
   getPayload(user: Users) {
-    const roles = [];
+    const roles = []
 
     user.roles.map((role) => {
-      roles.push(role.name);
-    });
+      roles.push(role.name)
+    })
 
     return {
       id: user.id,
       email: user.email,
       roles: roles,
-    };
+    }
   }
 }

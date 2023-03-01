@@ -1,22 +1,22 @@
-import { rolesStub } from '../test/stubs/roles.stub';
+import { rolesStub } from '../test/stubs/roles.stub'
 
 export const RolesModel = {
   create: jest.fn().mockImplementation(() => {
-    return rolesStub();
+    return rolesStub()
   }),
   findAll: jest.fn().mockImplementation(() => {
-    return [rolesStub()];
+    return [rolesStub()]
   }),
   findOne: jest.fn().mockImplementation(() => {
-    return rolesStub();
+    return rolesStub()
   }),
   findByPk: jest.fn().mockImplementation(() => {
-    return rolesStub();
+    return rolesStub()
   }),
   update: jest.fn().mockImplementation(() => {
-    return 1;
+    return 1
   }),
   destroy: jest.fn().mockImplementation(() => {
-    return 1;
+    return 1
   }),
-};
+}
