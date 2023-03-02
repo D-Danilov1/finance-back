@@ -34,7 +34,9 @@ export class AuthorizationService {
   }
 
   async registration(dto: CreateUsersDto) {
-    return await this.usersService.create(dto)
+    const user = await this.usersService.create(dto)
+    const tokens = await this.login({email: user.email, password: user.password})
+    return tokens
   }
 
   async logout(refreshToken: string) {
