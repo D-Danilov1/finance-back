@@ -1,27 +1,14 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  HttpStatus,
-  Post,
-  Put,
-  Req,
-  Res,
-  UsePipes,
-} from '@nestjs/common';
-import { CreateUsersDto } from '../users/dto/create-users.dto';
-import { AuthorizationService } from './authorization.service';
-import { AuthorizationDto } from './dto/authorization.dto';
-import { ValidationPipe } from '../../../pipes/validation.pipe';
-import { Cookies } from '../../../classes/authorization/jwt/cookies';
-import { passthrough } from '../../../typing/response-setting.types';
-import {
-  AuthorizationResponse,
-  RefreshResponse,
-} from '../../../typing/authorization.types';
-import { Users } from '../users/models/users.model';
-import { Request, Response } from 'express';
-import { RefreshTokenDto } from './dto/refreshToken.dto';
+import { Body, Controller, Delete, HttpStatus, Post, Put, Req, Res, UsePipes } from '@nestjs/common'
+import { CreateUsersDto } from '../users/dto/create-users.dto'
+import { AuthorizationService } from './authorization.service'
+import { AuthorizationDto } from './dto/authorization.dto'
+import { ValidationPipe } from '../../../pipes/validation.pipe'
+import { Cookies } from '../../../classes/authorization/jwt/cookies'
+import { passthrough } from '../../../typing/response-setting.types'
+import { AuthorizationResponse, RefreshResponse } from '../../../typing/authorization.types'
+import { Users } from '../users/models/users.model'
+import { Request, Response } from 'express'
+import { RefreshTokenDto } from './dto/refreshToken.dto'
 
 @Controller('/api')
 export class AuthorizationController {
@@ -33,38 +20,28 @@ export class AuthorizationController {
     @Body() dto: AuthorizationDto,
     @Res(passthrough) response: Response,
   ): Promise<{
-    response: AuthorizationResponse;
-    statusCode: HttpStatus.CREATED;
+    response: AuthorizationResponse
+    statusCode: HttpStatus.CREATED
   }> {
-    const data = await this.service.login(dto);
+    const data = await this.service.login(dto)
 
-    Cookies.setRefreshToken(response, data.refreshToken);
+    Cookies.setRefreshToken(response, data.refreshToken)
 
     return {
       statusCode: HttpStatus.CREATED,
       response: data,
-    };
+    }
   }
 
   @UsePipes(ValidationPipe)
   @Post('/registration')
   async registration(
-    @Body() dto: AuthorizationDto,
-    @Res(passthrough) response: Response,
-  ): Promise<{
-    response: AuthorizationResponse;
-    statusCode: HttpStatus.CREATED;
-  }> {
-    const data = await this.service.registration(dto);
-
-    console.log(data)
-
-    Cookies.setRefreshToken(response, data.refreshToken);
-
+    @Body() dto: CreateUsersDto,
+  ): Promise<{ response: Users; statusCode: number }> {
     return {
       statusCode: HttpStatus.CREATED,
       response: await this.service.registration(dto),
-    };
+    }
   }
 
   @UsePipes(ValidationPipe)
@@ -73,14 +50,14 @@ export class AuthorizationController {
     @Req() request: Request,
     @Res(passthrough) response: Response,
   ): Promise<{ response: number; statusCode: HttpStatus.OK }> {
-    const { refreshToken } = request.cookies;
+    const { refreshToken } = request.cookies
 
-    response.clearCookie('refreshToken');
+    response.clearCookie('refreshToken')
 
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.logout(refreshToken),
-    };
+    }
   }
 
   @UsePipes(ValidationPipe)
@@ -88,12 +65,12 @@ export class AuthorizationController {
   async refresh(
     @Body() dto: RefreshTokenDto,
   ): Promise<{ response: RefreshResponse; statusCode: HttpStatus.OK }> {
-    const { refreshToken } = dto;
-    const data = await this.service.refresh(refreshToken);
+    const { refreshToken } = dto
+    const data = await this.service.refresh(refreshToken)
 
     return {
       statusCode: HttpStatus.OK,
       response: data,
-    };
+    }
   }
 }
