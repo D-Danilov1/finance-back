@@ -55,7 +55,9 @@ export class AuthorizationController {
     response: AuthorizationResponse;
     statusCode: HttpStatus.CREATED;
   }> {
-    const data = await this.service.login(dto);
+    const data = await this.service.registration(dto);
+
+    console.log(data)
 
     Cookies.setRefreshToken(response, data.refreshToken);
 
