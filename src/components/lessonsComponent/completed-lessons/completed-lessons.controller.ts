@@ -60,8 +60,8 @@ export class CompletedLessonsController {
   // @RolesGuards([ROLES.USER])
   @Post('/all-schedule')
   async findAllBySchedule(
-    @Param('id') id: string,
-  ): Promise<{ response: number[]; statusCode: number }> {
+    @Body('id') id: string,
+  ): Promise<{ response: number[] | []; statusCode: number }> {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.findAllBySchedule(id),
