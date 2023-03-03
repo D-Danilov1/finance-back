@@ -18,8 +18,9 @@ export class CompletedLessonsService extends EntityService<CompletedLessons> {
     })
   }
 
-  async findAllBySchedule() {
+  async findAllBySchedule(id: string) {
     const results = await this.repository.findAll({
+      where:  {user_id : id},
       attributes: ['lesson_schedule_id'],
     })
 

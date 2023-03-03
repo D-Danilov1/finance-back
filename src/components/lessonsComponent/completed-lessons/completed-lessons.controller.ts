@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UsePipes,
 } from '@nestjs/common';
 import { CompletedLessonsService } from './completed-lessons.service';
@@ -57,14 +58,13 @@ export class CompletedLessonsController {
   }
 
   // @RolesGuards([ROLES.USER])
-  @Get('/all-schedule')
-  async findAllBySchedule(): Promise<{
-    response: number[];
-    statusCode: number;
-  }> {
+  @Post('/all-schedule')
+  async findAllBySchedule(
+    @Param('id') id: string,
+  ): Promise<{ response: number[]; statusCode: number }> {
     return {
       statusCode: HttpStatus.OK,
-      response: await this.service.findAllBySchedule(),
+      response: await this.service.findAllBySchedule(id),
     };
   }
 
