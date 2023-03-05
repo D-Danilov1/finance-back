@@ -19,10 +19,6 @@ export class UsersService extends EntityService<Users> {
     super(repository);
   }
 
-  async destroyUsers() {
-    return await this.repository.destroy();
-  }
-
   async create(dto: CreateUsersDto): Promise<Users> {
     const candidate: Users = await this.repository.findOne({
       where: { email: dto.email },

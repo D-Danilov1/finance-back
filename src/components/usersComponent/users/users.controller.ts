@@ -8,15 +8,15 @@ import {
   Post,
   Put,
   UsePipes,
-} from '@nestjs/common'
-import { UsersService } from './users.service'
-import { CreateUsersDto } from './dto/create-users.dto'
-import { Users } from './models/users.model'
-import { RoleToUserDto } from './dto/role-to-user.dto'
-import { UpdateUsersDto } from './dto/update-users.dto'
-import { ValidationPipe } from '../../../pipes/validation.pipe'
-import { ROLES } from '../../../constants/roles.constants'
-import { RolesGuards } from '../../../decorators/roles-guards.decorator'
+} from '@nestjs/common';
+import { UsersService } from './users.service';
+import { CreateUsersDto } from './dto/create-users.dto';
+import { Users } from './models/users.model';
+import { RoleToUserDto } from './dto/role-to-user.dto';
+import { UpdateUsersDto } from './dto/update-users.dto';
+import { ValidationPipe } from '../../../pipes/validation.pipe';
+import { ROLES } from '../../../constants/roles.constants';
+import { RolesGuards } from '../../../decorators/roles-guards.decorator';
 
 @Controller('/api/users')
 export class UsersController {
@@ -24,11 +24,13 @@ export class UsersController {
 
   @UsePipes(ValidationPipe)
   @Post()
-  async create(@Body() dto: CreateUsersDto): Promise<{ response: Users; statusCode: number }> {
+  async create(
+    @Body() dto: CreateUsersDto,
+  ): Promise<{ response: Users; statusCode: number }> {
     return {
       statusCode: HttpStatus.CREATED,
       response: await this.service.create(dto),
-    }
+    };
   }
 
   @RolesGuards([ROLES.ADMIN])
@@ -37,16 +39,18 @@ export class UsersController {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.findAll(),
-    }
+    };
   }
 
   @RolesGuards([ROLES.ADMIN])
   @Get('/:id')
-  async findByPk(@Param('id') id: string): Promise<{ response: Users; statusCode: number }> {
+  async findByPk(
+    @Param('id') id: string,
+  ): Promise<{ response: Users; statusCode: number }> {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.findByPk(id),
-    }
+    };
   }
 
   @RolesGuards([ROLES.ADMIN])
@@ -57,37 +61,31 @@ export class UsersController {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.findByEmail(email),
-    }
+    };
   }
 
   @UsePipes(ValidationPipe)
   @RolesGuards([ROLES.ADMIN])
   @Put()
-  async update(@Body() dto: UpdateUsersDto): Promise<{ response: number[]; statusCode: number }> {
+  async update(
+    @Body() dto: UpdateUsersDto,
+  ): Promise<{ response: number[]; statusCode: number }> {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.update(dto),
-    }
+    };
   }
 
-  // @RolesGuards([ROLES.ADMIN])
-  // @Delete('/:id')
-  // async destroy(@Param('id') id: string): Promise<{ response: number; statusCode: number }> {
-  //   return {
-  //     statusCode: HttpStatus.OK,
-  //     response: await this.service.destroy(id),
-  //   }
-  // }
-
-  // @RolesGuards([ROLES.ADMIN])
-  @Delete('/destroy')
-  async destroyUsers() {
+  @RolesGuards([ROLES.ADMIN])
+  @Delete('/:id')
+  async destroy(
+    @Param('id') id: string,
+  ): Promise<{ response: number; statusCode: number }> {
     return {
       statusCode: HttpStatus.OK,
-      response: await this.service.destroyUsers(),
-    }
+      response: await this.service.destroy(id),
+    };
   }
-
 
   @UsePipes(ValidationPipe)
   @RolesGuards([ROLES.ADMIN])
@@ -98,7 +96,7 @@ export class UsersController {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.addRoleToUser(dto),
-    }
+    };
   }
 
   @UsePipes(ValidationPipe)
@@ -110,6 +108,6 @@ export class UsersController {
     return {
       statusCode: HttpStatus.OK,
       response: await this.service.removeRoleToUser(dto),
-    }
+    };
   }
 }
