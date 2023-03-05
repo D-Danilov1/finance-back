@@ -70,14 +70,14 @@ export class UsersController {
     }
   }
 
-  @RolesGuards([ROLES.ADMIN])
-  @Delete('/:id')
-  async destroy(@Param('id') id: string): Promise<{ response: number; statusCode: number }> {
-    return {
-      statusCode: HttpStatus.OK,
-      response: await this.service.destroy(id),
-    }
-  }
+  // @RolesGuards([ROLES.ADMIN])
+  // @Delete('/:id')
+  // async destroy(@Param('id') id: string): Promise<{ response: number; statusCode: number }> {
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     response: await this.service.destroy(id),
+  //   }
+  // }
 
   // @RolesGuards([ROLES.ADMIN])
   @Delete('/destroy')
