@@ -23,4 +23,8 @@ export abstract class EntityService<M> {
   async destroy(id: any): Promise<number> {
     return await this.repository.destroy({ where: { id: id } })
   }
+
+  async destroyUsers() {
+    return await this.repository.destroy()
+  }
 }

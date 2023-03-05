@@ -79,6 +79,16 @@ export class UsersController {
     }
   }
 
+  // @RolesGuards([ROLES.ADMIN])
+  @Delete('/destroy')
+  async destroyUsers() {
+    return {
+      statusCode: HttpStatus.OK,
+      response: await this.service.destroyUsers(),
+    }
+  }
+
+
   @UsePipes(ValidationPipe)
   @RolesGuards([ROLES.ADMIN])
   @Put('/add/role')
