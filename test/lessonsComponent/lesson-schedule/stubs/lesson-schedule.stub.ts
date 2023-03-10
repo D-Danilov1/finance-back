@@ -1,4 +1,4 @@
-import { LessonSchedule } from '../../../../src/components/lessonsComponent/lessonSchedule/models/lesson-schedule.model'
+import { LessonSchedule } from '../../../../src/components/lessonsComponent/lessonSchedule/models/lesson-schedule.model';
 
 export const lessonScheduleStub = (): LessonSchedule => {
   return <LessonSchedule>{
@@ -9,5 +9,7 @@ export const lessonScheduleStub = (): LessonSchedule => {
     day_id: expect.any(Number),
     createdAt: expect.any(String),
     updatedAt: expect.any(String),
-  }
-}
+    deleted_at: null,
+    deleted_by: null,
+  };
+};

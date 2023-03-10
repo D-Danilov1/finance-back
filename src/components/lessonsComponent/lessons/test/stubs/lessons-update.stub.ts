@@ -4,6 +4,6 @@ export const lessonsUpdateStub = (): UpdateLessonsDto => {
   return <UpdateLessonsDto>{
     name: 'First lesson',
     image: 'uploads/test.jpg',
-    link: 'lesson-first',
-  }
+    link: 'uploads/test.mp4',
+  };
 }

@@ -4,4 +4,5 @@ export const lessonsCreateStub = (): CreateLessonsDto =>
   <CreateLessonsDto>{
     name: 'Test' + Date.now(),
     image: 'test.jpg',
-  }
+    link: 'uploads/test.mp4',
+  };

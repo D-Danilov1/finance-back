@@ -1,14 +1,14 @@
-import { Column, DataType, HasMany, Table } from 'sequelize-typescript'
-import { EntityModel } from '../../../../classes/core/entity.model'
-import { LessonsInCourses } from '../../lessonsInCourses/models/lessons-in-courses.model'
-import { LessonSchedule } from '../../lessonSchedule/models/lesson-schedule.model'
+import { Column, DataType, HasMany, Table } from 'sequelize-typescript';
+import { EntityModel } from '../../../../classes/core/entity.model';
+import { LessonsInCourses } from '../../lessonsInCourses/models/lessons-in-courses.model';
+import { LessonSchedule } from '../../lessonSchedule/models/lesson-schedule.model';
 
 interface LessonsCreationAttrs {
-  name: string
-  image: string
-  link: string | null
-  deleted_at: string | null
-  deleted_by: number | null
+  name: string;
+  image: string;
+  link: string | null;
+  deleted_at: string;
+  deleted_by: string;
 }
 
 @Table({ tableName: 'Lessons' })
@@ -19,26 +19,26 @@ export class Lessons extends EntityModel<Lessons, LessonsCreationAttrs> {
     autoIncrement: true,
     primaryKey: true,
   })
-  id: number
+  id: number;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  name: string
+  name: string;
 
   @Column({ type: DataType.STRING, allowNull: false })
-  image: string
+  image: string;
 
   @Column({ type: DataType.STRING })
-  link: string | null
+  link: string | null;
 
   @Column({ type: DataType.STRING })
-  deleted_at: string | null
+  deleted_at: string;
 
   @Column({ type: DataType.STRING })
-  deleted_by: string | null
+  deleted_by: string;
 
   @HasMany(() => LessonsInCourses)
-  lessonInCourses: LessonsInCourses[]
+  lessonInCourses: LessonsInCourses[];
 
   @HasMany(() => LessonSchedule)
-  lessonSchedule: LessonSchedule[]
+  lessonSchedule: LessonSchedule[];
 }

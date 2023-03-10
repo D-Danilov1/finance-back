@@ -7,5 +7,7 @@ export const completedLessonsStub = (): CompletedLessons => {
     user_id: expect.any(String),
     createdAt: expect.any(String),
     updatedAt: expect.any(String),
-  }
+    deleted_at: null,
+    deleted_by: null,
+  };
 }

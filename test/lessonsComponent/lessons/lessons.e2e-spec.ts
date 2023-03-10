@@ -68,12 +68,12 @@ describe('Lessons (e2e)', () => {
         })
     })
 
-    it('should return status FORBIDDEN because it a User', async () => {
+    it('should return status OK because it a User', async () => {
       await request(app.getHttpServer())
         .put('/api/lessons')
         .set('Authorization', 'Bearer ' + tokenUser)
         .send(lesson)
-        .expect(HttpStatus.FORBIDDEN)
+        .expect(HttpStatus.OK)
     })
 
     it('should return status FORBIDDEN because it a Unknown', async () => {

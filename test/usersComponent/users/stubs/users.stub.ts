@@ -8,6 +8,10 @@ export const usersStub = (): Users => {
     roles: expect.any(Array),
     createdAt: expect.any(String),
     updatedAt: expect.any(String),
+    banned_at: null,
+    banned_by: null,
+    start_of_subscription: null,
+    end_of_subscription: null,
   };
 };
 
@@ -18,5 +22,9 @@ export const usersStubWithoutRoles = (): Users => {
     password: expect.any(String),
     createdAt: expect.any(String),
     updatedAt: expect.any(String),
+    banned_at: null,
+    banned_by: null,
+    start_of_subscription: null,
+    end_of_subscription: null,
   };
 };
