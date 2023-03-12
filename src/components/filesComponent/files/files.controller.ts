@@ -18,7 +18,7 @@ export class FilesController {
 
   @Post()
   @HttpCode(200)
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @UseInterceptors(FilesInterceptor('files'))
   async uploadFiles(
     @UploadedFiles() files: Express.Multer.File[],

@@ -21,7 +21,7 @@ import { UpdateLessonScheduleDto } from './dto/update-lesson-schedule.dto';
 export class LessonScheduleController {
   constructor(private service: LessonScheduleService) {}
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @UsePipes(ValidationPipe)
   @Post()
   async create(
@@ -33,7 +33,7 @@ export class LessonScheduleController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @Get()
   async findAll(): Promise<{
     response: LessonSchedule[];
@@ -45,7 +45,7 @@ export class LessonScheduleController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @Get('/:id')
   async findByPk(
     @Param('id') id: number,
@@ -56,7 +56,7 @@ export class LessonScheduleController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @UsePipes(ValidationPipe)
   @Put()
   async update(

@@ -33,7 +33,7 @@ export class DaysController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @Get()
   async findAll(): Promise<{
     response: Days[];
@@ -45,7 +45,7 @@ export class DaysController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @Get('/:id')
   async findByPk(
     @Param('id') id: number,
@@ -56,7 +56,7 @@ export class DaysController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @UsePipes(ValidationPipe)
   @Put()
   async update(
@@ -68,7 +68,7 @@ export class DaysController {
     };
   }
 
-  @RolesGuards([ROLES.USER])
+  // @RolesGuards([ROLES.USER])
   @Get('/name/:name')
   async findByName(
     @Param('name') name: string,
